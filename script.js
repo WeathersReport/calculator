@@ -1,3 +1,15 @@
+const numbers = document.getElementById('numbers');
+const display = document.querySelector('input[type="text"]');
+let operand1 = "";
+let operand2 = "";
+numbers.addEventListener("click", (e) => {
+    if (e.target.tagName !== 'BUTTON') return;
+    let buttonText = e.target.innerText;
+    operand1 += buttonText;
+    display.value = operand1;
+})
+
+
 function add(num1, num2)
 {
     let oper1 = num1;
