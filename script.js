@@ -6,6 +6,7 @@ let operand1 = "";
 let operand2 = "";
 let clickCount = 0;
 let result = 0;
+ let operator1 = "";
 numbers.addEventListener("click", (e) => {
     if (e.target.tagName !== 'BUTTON') return;
      let buttonText = e.target.innerText;
@@ -39,22 +40,41 @@ clear.addEventListener("click", (e) => {
 
 
 operators.addEventListener("click", (e) => {
-if (e.target.tagName !== 'BUTTON') return;
-    if(clickCount == 1){
-        clickCount++;
-        
-        let buttonText3 = e.target.innerText;
-        let result = operate(parseInt(operand1, 10), parseInt(operand2, 10), buttonText3);
-            display.value = result;
-        operand1 = String(result);
-        operand2 = "";}
-    else if(clickCount==0)
-    {
-        clickCount++;
+   if (e.target.tagName !== "BUTTON") return;
+
+    const clickedOperator = e.target.innerText;
+
+    if (clickCount === 0) {
+        operator1 = clickedOperator;
+        clickCount = 1;
         display.value = "";
-        console.log(operand1)
-    }    
-    }) 
+    }
+    else if (clickCount === 1 ) {
+        result = operate(
+            Number(operand1),
+            Number(operand2),
+            operator1
+        );
+        if(clickedOperator=="="){
+            display.value=result;
+            operand1 = "";
+            operand2 = "";
+            operator1 = "";
+            clickcount = 0;
+            return;
+        }
+        display.value = result;
+        operand1 = String(result);
+        operand2 = "";
+        operator1 = clickedOperator;
+        clickCount = 1;
+    }
+    else if (clickCount === 2) {
+        operator1 = clickedOperator;
+        clickCount = 1;
+        display.value = "";
+    }
+});
 
 
 function add(num1, num2)
