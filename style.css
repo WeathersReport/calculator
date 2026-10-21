@@ -50,8 +50,11 @@ button, #numbers
     gap:5px;
     width: calc((100% - 16px) / 2);
 }
-button
+button,
+input
 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:15px;
     appearance: none;
     border: none;
     outline: none;
